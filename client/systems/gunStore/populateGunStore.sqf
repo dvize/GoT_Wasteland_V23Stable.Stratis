@@ -51,16 +51,42 @@ switch(_switch) do
 
 	case 2:
 	{
-		//Clear the list
+		//Setup for side specific accessories array
+		_playerSide = playerSide;
+		
+		//Clear the list (standard to every side)
 		lbClear _gunlist;
 		_gunlist lbSetCurSel -1;
 		_gunpicture ctrlSettext "";
 		_gunlisttext ctrlSettext "";
-        _gunInfo ctrlSetStructuredText parseText "";
-
-		// Populate the gun shop weapon list
+		_gunInfo ctrlSetStructuredText parseText "";
+			
+		switch(_playerSide) do
 		{
-			_gunlistIndex = _gunlist lbAdd format["%1",_x select 0];
-		} forEach accessoriesArray;	
+
+			case west: 
+			{
+			// Populate the gun shop weapon list
+			{
+				_gunlistIndex = _gunlist lbAdd format["%1",_x select 0];
+			} forEach accessoriesArrayWest;	
+			};
+			
+			case east: 
+			{
+			// Populate the gun shop weapon list
+			{
+				_gunlistIndex = _gunlist lbAdd format["%1",_x select 0];
+			} forEach accessoriesArrayEast;	
+			};
+			
+			case resistance: 
+			{
+			// Populate the gun shop weapon list
+			{
+				_gunlistIndex = _gunlist lbAdd format["%1",_x select 0];
+			} forEach accessoriesArrayGuer;	
+			};
+		};
 	};
 };
